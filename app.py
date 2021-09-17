@@ -57,7 +57,7 @@ def index():
     return jsonify(books)
 
 @app.route('/discount/<id>', methods=['GET'])
-def index2():
+def index2(id):
     return jsonify(get_book(id))
 
 if __name__ == "__main__":
