@@ -1,7 +1,4 @@
-import flask
-from flask import request, jsonify
-
-app = flask.Flask(__name__)
+from flask import Flask, render_template, jsonify
 
 books = [
     {
@@ -48,18 +45,20 @@ books = [
 ]
 
 
+app = Flask(__name__)
 
 def get_book(code):
     for b in books:
         if b.get("code")==code:
             return  b
 
-@app.route('/', methods=['GET'])
-def api_all():
+@app.route("/")
+def index():
     return jsonify(books)
 
 @app.route('/discount/<id>', methods=['GET'])
-def api_find(id):
+def index2():
     return jsonify(get_book(id))
 
-app.run()
+if __name__ == "__main__":
+    app.run()
